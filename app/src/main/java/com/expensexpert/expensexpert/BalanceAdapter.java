@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHolder> {
 
     private ArrayList<Balance> balancelist;
+    private BalanceAdapter.RecyclerViewClickListener listener;
 
-    public BalanceAdapter(ArrayList<Balance> balancelist) {
+    public BalanceAdapter(ArrayList<Balance> balancelist, BalanceAdapter.RecyclerViewClickListener listener) {
         this.balancelist = balancelist;
+        this.listener = listener;
     }
 
 
@@ -33,13 +35,19 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
         return balancelist.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name, amount;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.member_name);
             amount = itemView.findViewById(R.id.member_balance);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
         }
     }
 
@@ -51,4 +59,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.MyViewHo
         return new MyViewHolder(itemView);
     }
 
+    public interface RecyclerViewClickListener {
+        void onClick(View view, int position);
+    }
 }

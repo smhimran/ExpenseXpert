@@ -1,5 +1,6 @@
 package com.expensexpert.expensexpert;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +36,8 @@ public class MemberFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getContext(), AddMember.class);
+                startActivity(intent);
             }
         });
 

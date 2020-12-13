@@ -1,6 +1,8 @@
 package com.expensexpert.expensexpert;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ public class BalanceFragment extends Fragment {
 
     private ArrayList<Balance> balanceArrayList;
     private RecyclerView recyclerView;
+    private BalanceAdapter.RecyclerViewClickListener listener;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,15 +38,36 @@ public class BalanceFragment extends Fragment {
     }
 
     private void setAdapter() {
-        BalanceAdapter adapter = new BalanceAdapter(balanceArrayList);
+        setOnclickListener();
+        BalanceAdapter adapter = new BalanceAdapter(balanceArrayList, listener);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
 
+    private void setOnclickListener() {
+        listener = new BalanceAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(getContext(), AddBalance.class);
+                intent.putExtra("member_name", balanceArrayList.get(position).getName());
+                startActivity(intent);
+            }
+        };
+    }
+
+
     private void setBalanceInfo() {
         balanceArrayList.add(new Balance("Member 1", 400));
         balanceArrayList.add(new Balance("Member 2", 100));
+    }
+
+
+    public void onClick(View view, int position) {
+        Log.e("works", "works");
+        Intent intent = new Intent(getContext(), AddBalance.class);
+        intent.putExtra("member_name", balanceArrayList.get(position).getName());
+        startActivity(intent);
     }
 }
