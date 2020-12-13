@@ -14,4 +14,22 @@
     <string name="title_home">Balance</string>
     <string name="title_dashboard">Expense</string>
     <string name="title_notifications">Members</string>
+
+
+    <string name="takku">Erafnul Islam Bhuiyan<br/>
+        Daffodil International University<br/>
+        Computer Science and Engineering<br/>
+        E-mail: eib.erfan@gmail.com
+    </string>
+
+    <string name="imran">Shah Habibul Imran<br/>
+        Daffodil International University<br/>
+        Computer Science and Engineering<br/>
+        E-mail: smhimran@gmail.com
+    </string>
+
+    <string name="bug_report_prev">If you want to report a bug or give us a suggestion, Please mail us at:</string>
+    <string name="email1"> eib.erfan@gmail.com</string>
+    <string name="email2">smhimran@gmail.com</string>
+
 </resources>
